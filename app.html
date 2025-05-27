@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AES File Encrypt/Decrypt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        min-height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 40px;
+        max-width: 500px;
+        width: 100%;
+        color: #fff;
+      }
+      .form-control, .form-select {
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+      }
+      .form-control::placeholder {
+        color: #eee;
+      }
+      .btn-primary {
+        background-color: #ffb347;
+        border: none;
+        font-weight: bold;
+      }
+      .btn-primary:hover {
+        background-color: #ffa726;
+      }
+      .alert {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glass-card">
+      <h2 class="text-center mb-4"><i class="bi bi-shield-lock"></i> AES File Encrypt / Decrypt</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">📁 File cần xử lý:</label>
+          <input class="form-control" type="file" name="file" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">🔑 Nhập khóa (tự do):</label>
+          <input type="text" class="form-control" name="key" placeholder="Ví dụ: mysecretkey" required>
+</div>
+        <div class="mb-3">
+          <label class="form-label">⚙️ Chọn thao tác:</label>
+          <select class="form-select" name="action" required>
+            <option value="encrypt">🔐 Mã hóa</option>
+            <option value="decrypt">🔓 Giải mã</option>
+          </select>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">🚀 Thực hiện</button>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+"""
